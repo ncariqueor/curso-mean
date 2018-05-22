@@ -7,22 +7,24 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // Cargas rutas
+
 var user_routes = require('./routes/user');
-
-
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+var artist_routes = require('./routes/artist');
+var album_routes = require('./routes/album');
 
 // Congifurar Cabeceras http
 
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 
 //Rutas base
 
 app.use('/api', user_routes);
+app.use('/api', artist_routes);
+app.use('/api', album_routes);
 
-/*app.get('/pruebas', function(req, res){
-    res.status(200).send({message: 'Primera Ruta'});
-});*/
+
+//  Exportar modulo para usar en index.js
 
 module.exports = app;
